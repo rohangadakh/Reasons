@@ -7,7 +7,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Hide scrollbars for all elements */
+* {
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+}
+
+.backdrop-blur-lg {
+  backdrop-filter: blur(10px);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
