@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"; // For animation
+import {
+  FiX,
+  FiMenu,
+  FiShoppingCart,
+  FiLayers,
+  FiChevronRight,
+} from "react-icons/fi";
+import { IoChevronBackOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
-  const [submenuOpen, setSubmenuOpen] = useState(""); // Initialize submenuOpen state
+  const [activeMenu, setActiveMenu] = useState(null);
+  const [activeSubMenu, setActiveSubMenu] = useState("");
+  const [submenuOpen, setSubmenuOpen] = useState(""); // To track the open submenu
+  const [currentMenu, setCurrentMenu] = useState(""); // To track the current menu state
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,27 +29,51 @@ const Navbar = () => {
     };
   }, []);
 
-  const handleMouseEnter = (index) => {
-    setActiveMenu(index);
-  };
-
   const handleMenuClick = (menu) => {
-    if (submenuOpen === menu) {
-      setSubmenuOpen(""); // Close submenu if the same menu is clicked
+    if (currentMenu === menu) {
+      // If the menu is already open, close it
+      setCurrentMenu("");
+      setActiveSubMenu("");
     } else {
-      setSubmenuOpen(menu); // Open the selected submenu
+      // Set the current menu and reset active submenu
+      setCurrentMenu(menu);
+      setActiveSubMenu("");
     }
   };
 
+  const handleSubMenuClick = (submenu) => {
+    if (activeSubMenu === submenu) {
+      // If the submenu is already open, close it
+      setActiveSubMenu("");
+    } else {
+      // Set the active submenu
+      setActiveSubMenu(submenu);
+    }
+  };
+
+  const handleMouseEnter = (menuIndex) => {
+    setActiveMenu(menuIndex);
+  };
+
   const handleMouseLeave = () => {
+    // Do nothing to keep the submenu open while hovering over it
+  };
+
+  const handleSubMenuLeave = () => {
+    // This clears both menu and submenu when leaving the submenu area
     setActiveMenu(null);
+    setActiveSubMenu("");
+  };
+
+  const handleMouseEnterSubMenu = (submenu) => {
+    setActiveSubMenu(submenu);
   };
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+      className={`fixed w-full top-0 z-50 transition-all duration-800 ${
         scrolled ? "bg-white text-black" : "bg-transparent text-white"
-      } md:hover:bg-white md:hover:text-black`} // Apply hover effects only on medium screens and up
+      } md:hover:bg-white md:hover:text-black`}
     >
       <div className="container mx-auto p-5">
         {/* Desktop Navbar */}
@@ -50,6 +83,7 @@ const Navbar = () => {
           </div>
 
           <ul className="flex space-x-8 relative z-20">
+            {/* Home menu */}
             <li
               className="group relative"
               onMouseEnter={() => handleMouseEnter(0)}
@@ -59,7 +93,11 @@ const Navbar = () => {
                 HOME
               </Link>
               {activeMenu === 0 && (
-                <div className="fixed inset-0 bg-white z-30 flex p-10 mt-28 transition-opacity duration-300 mb-24">
+                <div
+                  className="fixed inset-0 bg-white z-30 flex p-10 mt-28 transition-opacity duration-300 mb-24"
+                  onMouseEnter={() => handleMouseEnter(0)} // Keep the submenu open when hovering on it
+                  onMouseLeave={handleSubMenuLeave} // Close submenu when leaving it
+                >
                   <div className="flex flex-col w-1/3 text-black">
                     <Link to="/whatsnew" className="py-2 hover:bg-gray-200">
                       WHAT'S NEW
@@ -78,13 +116,14 @@ const Navbar = () => {
                     </Link>
                   </div>
                   <div className="border-l border-gray-300 mx-4 h-auto"></div>
+                  {/* Images section */}
                   <div className="flex flex-col ml-10 w-2/3">
                     <div className="flex space-x-4 mt-8">
                       <div className="flex flex-col items-center">
                         <img
                           src="https://i.pinimg.com/564x/55/93/44/559344712a4dde584e12c34461462da4.jpg"
                           alt="Image 1"
-                          className="h-80 object-cover mb-2 rounded-3xl"
+                          className="h-60 object-cover mb-2 rounded-3xl"
                         />
                         <span className="text-center text-black">
                           Description 1
@@ -94,7 +133,7 @@ const Navbar = () => {
                         <img
                           src="https://i.pinimg.com/564x/c7/d1/d2/c7d1d2b647a03a23fa1833f89fc90b14.jpg"
                           alt="Image 2"
-                          className="h-80 object-cover mb-2 rounded-3xl"
+                          className="h-60 object-cover mb-2 rounded-3xl"
                         />
                         <span className="text-center text-black">
                           Description 2
@@ -104,20 +143,10 @@ const Navbar = () => {
                         <img
                           src="https://i.pinimg.com/564x/ce/1f/0b/ce1f0ba489010bd6c1bd3f92c4297b5c.jpg"
                           alt="Image 3"
-                          className="h-80 object-cover mb-2 rounded-3xl"
+                          className="h-60 object-cover mb-2 rounded-3xl"
                         />
                         <span className="text-center text-black">
                           Description 3
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/63/04/b5/6304b54bf3cd996df473211fdef38a25.jpg"
-                          alt="Image 4"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">
-                          Description 4
                         </span>
                       </div>
                     </div>
@@ -125,67 +154,17 @@ const Navbar = () => {
                 </div>
               )}
             </li>
-            <li
-              className="group relative"
-              onMouseEnter={() => handleMouseEnter(1)}
-              onMouseLeave={handleMouseLeave}
-            >
+
+            <li>
               <Link
                 to="/whatsnew"
                 className="py-2 px-4 text-lg group-hover:text-black"
               >
                 WHAT'S NEW
               </Link>
-              {activeMenu === 1 && (
-                <div className="fixed inset-0 bg-white mt-28 z-30 flex p-10 transition-opacity duration-300 mb-24">
-                  <div className="flex flex-col w-1/3 text-black">
-                    <Link to="/latesttrends" className="py-2 hover:bg-gray-200">
-                      Latest Trends
-                    </Link>
-                    <Link to="/newarrivals" className="py-2 hover:bg-gray-200">
-                      New Arrivals
-                    </Link>
-                  </div>
-                  <div className="border-l border-gray-300 mx-4 h-auto"></div>
-                  <div className="flex flex-col ml-10 w-2/3">
-                    <div className="flex space-x-4 mt-8">
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/55/93/44/559344712a4dde584e12c34461462da4.jpg"
-                          alt="Image 1"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">Latest 1</span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/c7/d1/d2/c7d1d2b647a03a23fa1833f89fc90b14.jpg"
-                          alt="Image 2"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">Latest 2</span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/ce/1f/0b/ce1f0ba489010bd6c1bd3f92c4297b5c.jpg"
-                          alt="Image 3"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">Latest 3</span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/63/04/b5/6304b54bf3cd996df473211fdef38a25.jpg"
-                          alt="Image 4"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">Latest 4</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
             </li>
+
+            {/* High Jewellery menu */}
             <li
               className="group relative"
               onMouseEnter={() => handleMouseEnter(2)}
@@ -198,7 +177,11 @@ const Navbar = () => {
                 HIGH JEWELLERY
               </Link>
               {activeMenu === 2 && (
-                <div className="fixed inset-0 bg-white mt-28 z-30 flex p-10 transition-opacity duration-300 mb-24">
+                <div
+                  className="fixed inset-0 bg-white mt-28 z-30 flex p-10 transition-opacity duration-300 mb-24"
+                  onMouseEnter={() => handleMouseEnter(2)}
+                  onMouseLeave={handleSubMenuLeave}
+                >
                   <div className="flex flex-col w-1/3 text-black">
                     <Link to="/exclusive" className="py-2 hover:bg-gray-200">
                       Exclusive Collections
@@ -212,52 +195,20 @@ const Navbar = () => {
                   </div>
                   <div className="border-l border-gray-300 mx-4 h-auto"></div>
                   <div className="flex flex-col ml-10 w-2/3">
-                    <div className="flex space-x-4 mt-8">
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/55/93/44/559344712a4dde584e12c34461462da4.jpg"
-                          alt="Image 1"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">
-                          Collection 1
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/c7/d1/d2/c7d1d2b647a03a23fa1833f89fc90b14.jpg"
-                          alt="Image 2"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">
-                          Collection 2
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/ce/1f/0b/ce1f0ba489010bd6c1bd3f92c4297b5c.jpg"
-                          alt="Image 3"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">
-                          Collection 3
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/63/04/b5/6304b54bf3cd996df473211fdef38a25.jpg"
-                          alt="Image 4"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">
-                          Collection 4
-                        </span>
-                      </div>
+                    <div className="flex flex-col">
+                      <Link to="/Catalogue" className="py-2 hover:bg-gray-200">
+                        Catalogue Collection 1
+                      </Link>
+                      <Link to="/Catalogue" className="py-2 hover:bg-gray-200">
+                        Catalogue Collection 2
+                      </Link>
                     </div>
                   </div>
                 </div>
               )}
             </li>
+
+            {/* Shop menu with submenu items */}
             <li
               className="group relative"
               onMouseEnter={() => handleMouseEnter(3)}
@@ -270,54 +221,221 @@ const Navbar = () => {
                 SHOP
               </Link>
               {activeMenu === 3 && (
-                <div className="fixed inset-0 bg-white mt-28 z-30 flex p-10 transition-opacity duration-300 mb-24">
+                <div
+                  className="fixed inset-0 bg-white mt-28 z-30 flex p-10 transition-opacity duration-300 mb-24"
+                  onMouseEnter={() => handleMouseEnter(3)}
+                  onMouseLeave={handleSubMenuLeave}
+                >
                   <div className="flex flex-col w-1/3 text-black">
-                    <Link to="/rings" className="py-2 hover:bg-gray-200">
-                      RINGS
+                    <Link
+                      to="/Catalogue?type=kundan"
+                      className="py-2 hover:bg-gray-200"
+                      onMouseEnter={() => handleMouseEnterSubMenu("kundan")}
+                    >
+                      KUNDAN
                     </Link>
-                    <Link to="/bracelets" className="py-2 hover:bg-gray-200">
-                      BRACELETS
+                    <Link
+                      to="/Catalogue?type=silver"
+                      className="py-2 hover:bg-gray-200"
+                      onMouseEnter={() => handleMouseEnterSubMenu("silver")}
+                    >
+                      SILVER
+                    </Link>
+                    <Link
+                      to="/Catalogue?type=diamond"
+                      className="py-2 hover:bg-gray-200"
+                      onMouseEnter={() => handleMouseEnterSubMenu("diamond")}
+                    >
+                      DIAMOND
                     </Link>
                   </div>
+
                   <div className="border-l border-gray-300 mx-4 h-auto"></div>
+
                   <div className="flex flex-col ml-10 w-2/3">
-                    <div className="flex space-x-4 mt-8">
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/55/93/44/559344712a4dde584e12c34461462da4.jpg"
-                          alt="Image 1"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">Ring 1</span>
+                    {/* Default images before hovering on submenu */}
+                    {!activeSubMenu && (
+                      <div className="flex space-x-4">
+                        <div className="flex flex-col items-center">
+                          <img
+                            src="https://i.pinimg.com/564x/55/93/44/559344712a4dde584e12c34461462da4.jpg"
+                            alt="Image 1"
+                            className="h-60 object-cover mb-2 rounded-3xl"
+                          />
+                          <span className="text-center text-black">
+                            Description 1
+                          </span>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <img
+                            src="https://i.pinimg.com/564x/c7/d1/d2/c7d1d2b647a03a23fa1833f89fc90b14.jpg"
+                            alt="Image 2"
+                            className="h-60 object-cover mb-2 rounded-3xl"
+                          />
+                          <span className="text-center text-black">
+                            Description 2
+                          </span>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <img
+                            src="https://i.pinimg.com/564x/ce/1f/0b/ce1f0ba489010bd6c1bd3f92c4297b5c.jpg"
+                            alt="Image 3"
+                            className="h-60 object-cover mb-2 rounded-3xl"
+                          />
+                          <span className="text-center text-black">
+                            Description 3
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/c7/d1/d2/c7d1d2b647a03a23fa1833f89fc90b14.jpg"
-                          alt="Image 2"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">Ring 2</span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/ce/1f/0b/ce1f0ba489010bd6c1bd3f92c4297b5c.jpg"
-                          alt="Image 3"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">
-                          Bracelet 1
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center">
-                        <img
-                          src="https://i.pinimg.com/564x/63/04/b5/6304b54bf3cd996df473211fdef38a25.jpg"
-                          alt="Image 4"
-                          className="h-80 object-cover mb-2 rounded-3xl"
-                        />
-                        <span className="text-center text-black">
-                          Bracelet 2
-                        </span>
-                      </div>
+                    )}
+
+                    {/* Submenu content for Kundan, Silver, Diamond */}
+                    <div
+                      className={`flex flex-col ${
+                        activeSubMenu === "kundan" ? "block" : "hidden"
+                      }`}
+                    >
+                      <h3 className="text-lg font-bold">KUNDAN</h3>
+                      <Link
+                        to="/Catalogue?type=kundan&subtype=necklace"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Necklace
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=kundan&subtype=earring"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Earring
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=kundan&subtype=ring"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Ring
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=kundan&subtype=bracelet"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Bracelet
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=kundan&subtype=mangtikka"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Mang Tikka
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=kundan&subtype=nosepin"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Nose Pin
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=kundan&subtype=armlet"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Armlets
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=kundan&subtype=nath"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Nath
+                      </Link>
+                    </div>
+                    <div
+                      className={`flex flex-col ${
+                        activeSubMenu === "silver" ? "block" : "hidden"
+                      }`}
+                    >
+                      <h3 className="text-lg font-bold">SILVER</h3>
+                      <Link
+                        to="/Catalogue?type=silver&subtype=necklace"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Necklace
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=silver&subtype=earring"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Earring
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=silver&subtype=ring"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Ring
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=silver&subtype=bracelet"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Bracelet
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=silver&subtype=anklet"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Anklets
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=silver&subtype=brooch"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Brooches
+                      </Link>
+                    </div>
+                    <div
+                      className={`flex flex-col ${
+                        activeSubMenu === "diamond" ? "block" : "hidden"
+                      }`}
+                    >
+                      <h3 className="text-lg font-bold">DIAMOND</h3>
+                      <Link
+                        to="/Catalogue?type=diamond&subtype=necklace"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Necklace
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=diamond&subtype=earring"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Earring
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=diamond&subtype=bracelet"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Bracelet
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=diamond&subtype=ring"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Ring
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=diamond&subtype=watches"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Watches
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=diamond&subtype=brooch"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Brooches
+                      </Link>
+                      <Link
+                        to="/Catalogue?type=diamond&subtype=anklet"
+                        className="py-2 hover:bg-gray-200"
+                      >
+                        Anklets
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -334,147 +452,472 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Mobile Menu Section */}
-        <div className="md:hidden flex justify-between items-center w-full">
-          <motion.button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-3xl"
-            whileTap={{ rotate: 90 }}
-          >
-            {isOpen ? <FiX /> : <FiMenu />}
-          </motion.button>
-
-          <div className="absolute left-1/2 transform -translate-x-1/2 text-3xl hero-title font-bold">
-            REASONS
-          </div>
-        </div>
-
         {/* Mobile Menu */}
-        <motion.div
-          initial={{ x: "100%" }}
-          animate={{ x: isOpen ? "0%" : "100%" }}
-          transition={{ type: "tween", duration: 0.3 }}
-          className="md:hidden fixed top-0 right-0 w-3/4 h-full bg-black text-white z-40"
-        >
-          <div className="flex justify-start mt-10 ml-5">
-            <div className="text-2xl hero-title font-bold">REASONS</div>
+        <div>
+          <div className="md:hidden flex justify-between items-center w-full">
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-3xl"
+              whileTap={{ rotate: 90 }}
+            >
+              {isOpen ? <FiX /> : <FiMenu />}
+            </motion.button>
+
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-3xl hero-title font-bold">
+              REASONS
+            </div>
           </div>
-          <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
-            <li>
-              <Link
-                to="/"
+
+          {/* Full-Screen Mobile Menu */}
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: isOpen ? "0%" : "100%" }}
+            transition={{ type: "tween", duration: 0.3 }}
+            className="fixed top-0 right-0 w-full h-full bg-black text-white z-40"
+          >
+            <div className="flex justify-between items-center mt-10 mx-5">
+              <h2 className="text-2xl hero-title font-bold">REASONS</h2>
+              <motion.button
                 onClick={() => setIsOpen(false)}
-                className={`text-xl ${
-                  submenuOpen === "home" ? "text-gray-400" : ""
-                }`} // Turns gray when clicked
+                className="text-3xl"
               >
-                HOME
-              </Link>
-            </li>
-            <li>
-              <div className="flex flex-col">
-                <button
-                  className={`text-xl text-left w-full ${
-                    submenuOpen === "whatsnew" ? "text-gray-400" : ""
-                  }`} // Turns gray when clicked
-                  onClick={() => handleMenuClick("whatsnew")}
-                >
-                  WHAT'S NEW
-                </button>
-                {submenuOpen === "whatsnew" && (
-                  <ul className="pl-5 mt-2">
-                    <li className="ml-4">
-                      <Link
-                        to="/whatsnew"
-                        onClick={() => {
-                          setIsOpen(false);
-                          setSubmenuOpen("");
-                        }}
-                        className="text-lg"
-                      >
-                        Latest Trends
-                      </Link>
-                    </li>
-                    <li className="ml-4">
-                      <Link
-                        to="/newarrivals"
-                        onClick={() => {
-                          setIsOpen(false);
-                          setSubmenuOpen("");
-                        }}
-                        className="text-lg"
-                      >
-                        New Arrivals
-                      </Link>
-                    </li>
-                  </ul>
-                )}
+                <FiX />
+              </motion.button>
+            </div>
+
+            {/* Main Menu Items */}
+            {currentMenu === "" && (
+              <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
+                <li>
+                  <Link
+                    to="/"
+                    onClick={() => setIsOpen(false)}
+                    className="text-xl flex items-center justify-between"
+                  >
+                    <span>HOME</span>
+                    <FiChevronRight />
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/whatsnew"
+                    onClick={() => setIsOpen(false)}
+                    className="text-xl flex items-center justify-between"
+                  >
+                    <span>WHAT'S NEW</span>
+                    <FiChevronRight />
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleMenuClick("shop")}
+                    className="text-xl flex items-center justify-between w-full"
+                  >
+                    <span>SHOP</span>
+                    <FiChevronRight />
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleMenuClick("occasions")}
+                    className="text-xl flex items-center justify-between w-full"
+                  >
+                    <span>OCCASIONS</span>
+                    <FiChevronRight />
+                  </button>
+                </li>
+              </ul>
+            )}
+
+            {/* Shop Submenu Items */}
+            {currentMenu === "shop" && (
+              <div>
+                <div className="flex justify-between items-center p-5">
+                  <button
+                    onClick={() => setCurrentMenu("")}
+                    className="text-lg"
+                  >
+                    <IoChevronBackOutline />
+                  </button>
+                  <h3 className="text-xl">SHOP</h3>
+                </div>
+                <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
+                  <li>
+                    <button
+                      onClick={() => handleSubMenuClick("kundan")}
+                      className="text-xl flex items-center justify-between w-full"
+                    >
+                      <span>KUNDAN</span>
+                      <FiChevronRight />
+                    </button>
+                    {activeSubMenu === "kundan" && (
+                      <ul className="pl-5 mt-2">
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=kundan&subtype=necklace"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Necklace
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=kundan&subtype=bracelet"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Bracelet
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=kundan&subtype=Earrings"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Earrings
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=kundan&subtype=ring"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Ring
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=kundan&subtype=mangtikka"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Mang Tika
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=kundan&subtype=nosepin"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Nose Pin
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=kundan&subtype=nath"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Nath
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=kundan&subtype=armlets"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Armlets
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => {
+                        handleSubMenuClick("silver");
+                        setActiveSubMenu("silver"); 
+                      }}
+                      className={`text-xl flex items-center justify-between w-full ${
+                        activeSubMenu === "silver"
+                          ? "text-gray-400"
+                          : "text-white"
+                      }`}
+                    >
+                      <span>SILVER</span>
+                      <FiChevronRight />
+                    </button>
+                    {activeSubMenu === "silver" && (
+                      <ul className="pl-5 mt-2">
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=silver&subtype=ring"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Ring
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=silver&subtype=earring"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Earring
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=silver&subtype=necklace"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Necklace
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=silver&subtype=bracelet"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Bracelet
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=silver&subtype=anklet"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Anklets
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=silver&subtype=brooch"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Brooches
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => {
+                        handleSubMenuClick("diamond");
+                        setActiveSubMenu("diamond"); // Set the active submenu to diamond
+                      }}
+                      className={`text-xl flex items-center justify-between w-full ${
+                        activeSubMenu === "diamond"
+                          ? "text-gray-400"
+                          : "text-white"
+                      }`}
+                    >
+                      <span>DIAMOND</span>
+                      <FiChevronRight />
+                    </button>
+                    {activeSubMenu === "diamond" && (
+                      <ul className="pl-5 mt-2">
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=diamond&subtype=ring"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Ring
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=diamond&subtype=necklace"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Necklace
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=diamond&subtype=earring"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Earrings
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=diamond&subtype=bracelet"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Bracelets
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=diamond&subtype=watch"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Watches
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=diamond&subtype=brooch"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Brooches
+                          </Link>
+                        </li>
+                        <li className="ml-4">
+                          <Link
+                            to="/Catalogue?type=diamond&subtype=ankelt"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setCurrentMenu("");
+                              setActiveSubMenu("");
+                            }}
+                            className="text-xl flex items-center"
+                          >
+                            Anklets
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+                </ul>
               </div>
-            </li>
-            <li>
-              <div className="flex flex-col">
-                <button
-                  className={`text-xl text-left w-full ${
-                    submenuOpen === "highJewelry" ? "text-gray-400" : ""
-                  }`} // Turns gray when clicked
-                  onClick={() => handleMenuClick("highJewelry")}
-                >
-                  HIGH JEWELRY
-                </button>
-                {submenuOpen === "highJewelry" && (
-                  <ul className="pl-5 mt-2">
-                    <li className="ml-4">
-                      <Link
-                        to="/HighJewelryComponent"
-                        onClick={() => {
-                          setIsOpen(false);
-                          setSubmenuOpen("");
-                        }}
-                        className="text-lg"
-                      >
-                        Exclusive Collection
-                      </Link>
-                    </li>
-                    <li className="ml-4">
-                      <Link
-                        to="/bridejewellery"
-                        onClick={() => {
-                          setIsOpen(false);
-                          setSubmenuOpen("");
-                        }}
-                        className="text-lg"
-                      >
-                        Indian Bride
-                      </Link>
-                    </li>
-                  </ul>
-                )}
+            )}
+
+            {/* Occasions Submenu Items */}
+            {currentMenu === "occasions" && (
+              <div>
+                <div className="flex justify-between items-center p-5">
+                  <button
+                    onClick={() => setCurrentMenu("")}
+                    className="text-lg"
+                  >
+                    <IoChevronBackOutline />
+                  </button>
+                  <h3 className="text-xl">OCCASIONS</h3>
+                </div>
+                <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
+                  <li>
+                    <Link
+                      to="/indianBride" // Update the path as needed
+                      onClick={() => {
+                        setIsOpen(false);
+                        setCurrentMenu("");
+                        setActiveSubMenu("");
+                      }}
+                      className="text-xl flex items-center justify-between w-full"
+                    >
+                      <span>INDIAN BRIDE</span>
+                      <FiChevronRight />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/casuals" // Update the path as needed
+                      onClick={() => {
+                        setIsOpen(false);
+                        setCurrentMenu("");
+                        setActiveSubMenu("");
+                      }}
+                      className="text-xl flex items-center justify-between w-full"
+                    >
+                      <span>CASUALS</span>
+                      <FiChevronRight />
+                    </Link>
+                  </li>
+                </ul>
               </div>
-            </li>
-            <li>
-              <Link
-                to="/catalogue"
-                onClick={() => setIsOpen(false)}
-                className={`text-xl ${
-                  submenuOpen === "catalogue" ? "text-gray-400" : ""
-                }`} // Turns gray when clicked
-              >
-                SHOP
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/login"
-                onClick={() => setIsOpen(false)}
-                className={`text-xl ${
-                  submenuOpen === "login" ? "text-gray-400" : ""
-                }`} // Turns gray when clicked
-              >
-                LOGIN
-              </Link>
-            </li>
-          </ul>
-        </motion.div>
+            )}
+          </motion.div>
+        </div>
       </div>
     </nav>
   );
