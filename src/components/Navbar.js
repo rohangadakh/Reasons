@@ -106,7 +106,7 @@ const Navbar = () => {
                       to="/HighJewelryComponent"
                       className="py-2 hover:bg-gray-200"
                     >
-                      HIGH JEWELLERY
+                      Occasions
                     </Link>
                     <Link to="/Catalogue" className="py-2 hover:bg-gray-200">
                       SHOP
@@ -164,49 +164,76 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {/* High Jewellery menu */}
-            <li
-              className="group relative"
-              onMouseEnter={() => handleMouseEnter(2)}
-              onMouseLeave={handleMouseLeave}
-            >
-              <Link
-                to="/HighJewelryComponent"
-                className="py-2 px-4 text-lg group-hover:text-black"
-              >
-                HIGH JEWELLERY
-              </Link>
-              {activeMenu === 2 && (
-                <div
-                  className="fixed inset-0 bg-white mt-28 z-30 flex p-10 transition-opacity duration-300 mb-24"
-                  onMouseEnter={() => handleMouseEnter(2)}
-                  onMouseLeave={handleSubMenuLeave}
-                >
-                  <div className="flex flex-col w-1/3 text-black">
-                    <Link to="/exclusive" className="py-2 hover:bg-gray-200">
-                      Exclusive Collections
-                    </Link>
-                    <Link
-                      to="/bridejewellery"
-                      className="py-2 hover:bg-gray-200"
-                    >
-                      Indian Bride
-                    </Link>
-                  </div>
-                  <div className="border-l border-gray-300 mx-4 h-auto"></div>
-                  <div className="flex flex-col ml-10 w-2/3">
-                    <div className="flex flex-col">
-                      <Link to="/Catalogue" className="py-2 hover:bg-gray-200">
-                        Catalogue Collection 1
-                      </Link>
-                      <Link to="/Catalogue" className="py-2 hover:bg-gray-200">
-                        Catalogue Collection 2
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </li>
+{/* High Jewellery menu */}
+<li
+  className="group relative"
+  onMouseEnter={() => handleMouseEnter(2)}
+  onMouseLeave={handleMouseLeave}
+>
+  <Link className="py-2 px-4 text-lg group-hover:text-black">
+    Occasions
+  </Link>
+  {activeMenu === 2 && (
+    <div
+      className="fixed inset-0 bg-white mt-28 z-30 flex p-10 transition-opacity duration-300 mb-24"
+      onMouseEnter={() => handleMouseEnter(2)}
+      onMouseLeave={handleSubMenuLeave}
+    >
+      <div className="flex flex-col w-1/3 text-black">
+        <Link to="/indianbride" className="py-2 hover:bg-gray-200">
+          Indian Bride
+        </Link>
+        <Link
+          to="/everydayjewellery"
+          className="py-2 hover:bg-gray-200"
+        >
+          Everyday Jewellery
+        </Link>
+      </div>
+      <div className="border-l border-gray-300 mx-4 h-auto"></div>
+
+      {/* Horizontal image display */}
+      <div className="flex flex-row ml-10 space-x-4 w-full">
+        <div>
+          <img
+            src="https://i.pinimg.com/564x/f5/e4/bd/f5e4bddf70b886fd33536bd9825c49f1.jpg" // Replace with your image URL
+            alt="REASONS x Indian"
+            className="h-60 w-auto rounded" // Adjust styles as needed
+          />
+        </div>
+        <div>
+          <img
+            src="https://i.pinimg.com/736x/86/5f/3c/865f3c69d3c0b23233571697d6c9b208.jpg" // Replace with your image URL
+            alt="REASONS Exclusive"
+            className="h-60 w-auto rounded" // Adjust styles as needed
+          />
+        </div>
+        <div>
+          <img
+            src="https://i.pinimg.com/736x/51/01/be/5101be378904ecfbbc77dbbd9643ec85.jpg" // Replace with your image URL
+            alt="South Indian"
+            className="h-60 w-auto rounded" // Adjust styles as needed
+          />
+        </div>
+        <div>
+          <img
+            src="https://i.pinimg.com/564x/23/26/eb/2326eb5a984bb80ac7c9f2e89686d5d6.jpg" // Replace with your image URL
+            alt="Everyday Everready"
+            className="h-60 w-auto rounded" // Adjust styles as needed
+          />
+        </div>
+        <div>
+          <img
+            src="https://i.pinimg.com/564x/32/b6/a0/32b6a0dc775284f19b7a0248ba56abff.jpg" // Replace with your image URL
+            alt="Simple yet elegant"
+
+            className="h-60 w-auto rounded" // Adjust styles as needed
+          />
+        </div>
+      </div>
+    </div>
+  )}
+</li>
 
             {/* Shop menu with submenu items */}
             <li
@@ -525,6 +552,16 @@ const Navbar = () => {
                     <span>OCCASIONS</span>
                     <FiChevronRight />
                   </button>
+                </li>
+                <li>
+                  <Link
+                    to="/login"
+                    onClick={() => setIsOpen(false)}
+                    className="text-xl flex items-center justify-between"
+                  >
+                    <span>LOGIN</span>
+                    <FiChevronRight />
+                  </Link>
                 </li>
               </ul>
             )}
