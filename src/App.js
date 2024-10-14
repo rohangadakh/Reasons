@@ -19,6 +19,7 @@ import LoginPage from './components/login'; // Ensure this matches the filename
 import SignupPage from './components/signup'; // Change to PascalCase
 import Catalogue from './components/Catalogue';
 import './index.css'; // Tailwind configuration should be here
+import EveryDay from './components/Everyday';
 
 function App() {
     return (
@@ -61,10 +62,10 @@ function App() {
                             <Footer />
                         </>
                     } />
-                    <Route path="/bridejewellery" element={
+                    <Route path="/everyday" element={
                         <>
                             <Navbar />
-                            <IndianBrideJewelryCollection />
+                            <EveryDay />
                             <Footer />
                         </>
                     } />

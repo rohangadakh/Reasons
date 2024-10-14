@@ -184,7 +184,7 @@ const Navbar = () => {
           Indian Bride
         </Link>
         <Link
-          to="/everydayjewellery"
+          to="/everyday"
           className="py-2 hover:bg-gray-200"
         >
           Everyday Jewellery
@@ -938,7 +938,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link
-                      to="/casuals" // Update the path as needed
+                      to="/everyday" // Update the path as needed
                       onClick={() => {
                         setIsOpen(false);
                         setCurrentMenu("");
