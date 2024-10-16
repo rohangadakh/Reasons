@@ -42,12 +42,11 @@ const Navbar = () => {
   };
 
   const handleSubMenuClick = (submenu) => {
+    // Toggle the submenu: if already open, close it; otherwise, open the new one.
     if (activeSubMenu === submenu) {
-      // If the submenu is already open, close it
-      setActiveSubMenu("");
+      setActiveSubMenu(""); // Close it
     } else {
-      // Set the active submenu
-      setActiveSubMenu(submenu);
+      setActiveSubMenu(submenu); // Open the clicked submenu
     }
   };
 
@@ -164,76 +163,72 @@ const Navbar = () => {
               </Link>
             </li>
 
-{/* High Jewellery menu */}
-<li
-  className="group relative"
-  onMouseEnter={() => handleMouseEnter(2)}
-  onMouseLeave={handleMouseLeave}
->
-  <Link className="py-2 px-4 text-lg group-hover:text-black">
-    Occasions
-  </Link>
-  {activeMenu === 2 && (
-    <div
-      className="fixed inset-0 bg-white mt-28 z-30 flex p-10 transition-opacity duration-300 mb-24"
-      onMouseEnter={() => handleMouseEnter(2)}
-      onMouseLeave={handleSubMenuLeave}
-    >
-      <div className="flex flex-col w-1/3 text-black">
-        <Link to="/indianbride" className="py-2 hover:bg-gray-200">
-          Indian Bride
-        </Link>
-        <Link
-          to="/everyday"
-          className="py-2 hover:bg-gray-200"
-        >
-          Everyday Jewellery
-        </Link>
-      </div>
-      <div className="border-l border-gray-300 mx-4 h-auto"></div>
+            {/* High Jewellery menu */}
+            <li
+              className="group relative"
+              onMouseEnter={() => handleMouseEnter(2)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link className="py-2 px-4 text-lg group-hover:text-black">
+                Occasions
+              </Link>
+              {activeMenu === 2 && (
+                <div
+                  className="fixed inset-0 bg-white mt-28 z-30 flex p-10 transition-opacity duration-300 mb-24"
+                  onMouseEnter={() => handleMouseEnter(2)}
+                  onMouseLeave={handleSubMenuLeave}
+                >
+                  <div className="flex flex-col w-1/3 text-black">
+                    <Link to="/indianbride" className="py-2 hover:bg-gray-200">
+                      Indian Bride
+                    </Link>
+                    <Link to="/everyday" className="py-2 hover:bg-gray-200">
+                      Everyday Jewellery
+                    </Link>
+                  </div>
+                  <div className="border-l border-gray-300 mx-4 h-auto"></div>
 
-      {/* Horizontal image display */}
-      <div className="flex flex-row ml-10 space-x-4 w-full">
-        <div>
-          <img
-            src="https://i.pinimg.com/564x/f5/e4/bd/f5e4bddf70b886fd33536bd9825c49f1.jpg" // Replace with your image URL
-            alt="REASONS x Indian"
-            className="h-60 w-auto rounded" // Adjust styles as needed
-          />
-        </div>
-        <div>
-          <img
-            src="https://i.pinimg.com/736x/86/5f/3c/865f3c69d3c0b23233571697d6c9b208.jpg" // Replace with your image URL
-            alt="REASONS Exclusive"
-            className="h-60 w-auto rounded" // Adjust styles as needed
-          />
-        </div>
-        <div>
-          <img
-            src="https://i.pinimg.com/736x/51/01/be/5101be378904ecfbbc77dbbd9643ec85.jpg" // Replace with your image URL
-            alt="South Indian"
-            className="h-60 w-auto rounded" // Adjust styles as needed
-          />
-        </div>
-        <div>
-          <img
-            src="https://i.pinimg.com/564x/23/26/eb/2326eb5a984bb80ac7c9f2e89686d5d6.jpg" // Replace with your image URL
-            alt="Everyday Everready"
-            className="h-60 w-auto rounded" // Adjust styles as needed
-          />
-        </div>
-        <div>
-          <img
-            src="https://i.pinimg.com/564x/32/b6/a0/32b6a0dc775284f19b7a0248ba56abff.jpg" // Replace with your image URL
-            alt="Simple yet elegant"
-
-            className="h-60 w-auto rounded" // Adjust styles as needed
-          />
-        </div>
-      </div>
-    </div>
-  )}
-</li>
+                  {/* Horizontal image display */}
+                  <div className="flex flex-row ml-10 space-x-4 w-full">
+                    <div>
+                      <img
+                        src="https://i.pinimg.com/564x/f5/e4/bd/f5e4bddf70b886fd33536bd9825c49f1.jpg" // Replace with your image URL
+                        alt="REASONS x Indian"
+                        className="h-60 w-auto rounded" // Adjust styles as needed
+                      />
+                    </div>
+                    <div>
+                      <img
+                        src="https://i.pinimg.com/736x/86/5f/3c/865f3c69d3c0b23233571697d6c9b208.jpg" // Replace with your image URL
+                        alt="REASONS Exclusive"
+                        className="h-60 w-auto rounded" // Adjust styles as needed
+                      />
+                    </div>
+                    <div>
+                      <img
+                        src="https://i.pinimg.com/736x/51/01/be/5101be378904ecfbbc77dbbd9643ec85.jpg" // Replace with your image URL
+                        alt="South Indian"
+                        className="h-60 w-auto rounded" // Adjust styles as needed
+                      />
+                    </div>
+                    <div>
+                      <img
+                        src="https://i.pinimg.com/564x/23/26/eb/2326eb5a984bb80ac7c9f2e89686d5d6.jpg" // Replace with your image URL
+                        alt="Everyday Everready"
+                        className="h-60 w-auto rounded" // Adjust styles as needed
+                      />
+                    </div>
+                    <div>
+                      <img
+                        src="https://i.pinimg.com/564x/32/b6/a0/32b6a0dc775284f19b7a0248ba56abff.jpg" // Replace with your image URL
+                        alt="Simple yet elegant"
+                        className="h-60 w-auto rounded" // Adjust styles as needed
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </li>
 
             {/* Shop menu with submenu items */}
             <li
@@ -500,7 +495,7 @@ const Navbar = () => {
             initial={{ x: "100%" }}
             animate={{ x: isOpen ? "0%" : "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 right-0 w-full h-full bg-black text-white z-40"
+            className="fixed top-0 right-0 w-full h-full bg-white text-black z-40"
           >
             <div className="flex justify-between items-center mt-10 mx-5">
               <h2 className="text-2xl hero-title font-bold">REASONS</h2>
@@ -565,347 +560,398 @@ const Navbar = () => {
                 </li>
               </ul>
             )}
-
             {/* Shop Submenu Items */}
             {currentMenu === "shop" && (
-              <div>
-                <div className="flex justify-between items-center p-5">
-                  <button
-                    onClick={() => setCurrentMenu("")}
-                    className="text-lg"
-                  >
-                    <IoChevronBackOutline />
-                  </button>
-                  <h3 className="text-xl">SHOP</h3>
-                </div>
-                <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
-                  <li>
+              <div
+                className={`transition-all duration-300 ease-in-out ${
+                  activeSubMenu
+                    ? "h-auto opacity-100"
+                    : "h-0 opacity-0 overflow-hidden"
+                }`}>
+                {/* Back Button and SHOP Header */}
+                {!activeSubMenu && ( // Only show the header when no submenu is active
+                  <div className="flex justify-between items-center p-5">
                     <button
-                      onClick={() => handleSubMenuClick("kundan")}
-                      className="text-xl flex items-center justify-between w-full"
+                      onClick={() => setCurrentMenu("")}
+                      className="text-lg"
                     >
-                      <span>KUNDAN</span>
-                      <FiChevronRight />
+                      <IoChevronBackOutline />
                     </button>
-                    {activeSubMenu === "kundan" && (
-                      <ul className="pl-5 mt-2">
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=kundan&subtype=necklace"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Necklace
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=kundan&subtype=bracelet"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Bracelet
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=kundan&subtype=Earrings"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Earrings
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=kundan&subtype=ring"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Ring
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=kundan&subtype=mangtikka"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Mang Tika
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=kundan&subtype=nosepin"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Nose Pin
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=kundan&subtype=nath"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Nath
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=kundan&subtype=armlets"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Armlets
-                          </Link>
-                        </li>
-                      </ul>
-                    )}
-                  </li>
-                  <li>
-                    <button
-                      onClick={() => {
-                        handleSubMenuClick("silver");
-                        setActiveSubMenu("silver"); 
-                      }}
-                      className={`text-xl flex items-center justify-between w-full ${
-                        activeSubMenu === "silver"
-                          ? "text-gray-400"
-                          : "text-white"
-                      }`}
-                    >
-                      <span>SILVER</span>
-                      <FiChevronRight />
-                    </button>
-                    {activeSubMenu === "silver" && (
-                      <ul className="pl-5 mt-2">
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=silver&subtype=ring"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Ring
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=silver&subtype=earring"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Earring
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=silver&subtype=necklace"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Necklace
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=silver&subtype=bracelet"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Bracelet
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=silver&subtype=anklet"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Anklets
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=silver&subtype=brooch"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Brooches
-                          </Link>
-                        </li>
-                      </ul>
-                    )}
-                  </li>
-                  <li>
-                    <button
-                      onClick={() => {
-                        handleSubMenuClick("diamond");
-                        setActiveSubMenu("diamond"); // Set the active submenu to diamond
-                      }}
-                      className={`text-xl flex items-center justify-between w-full ${
-                        activeSubMenu === "diamond"
-                          ? "text-gray-400"
-                          : "text-white"
-                      }`}
-                    >
-                      <span>DIAMOND</span>
-                      <FiChevronRight />
-                    </button>
-                    {activeSubMenu === "diamond" && (
-                      <ul className="pl-5 mt-2">
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=diamond&subtype=ring"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Ring
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=diamond&subtype=necklace"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Necklace
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=diamond&subtype=earring"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Earrings
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=diamond&subtype=bracelet"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Bracelets
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=diamond&subtype=watch"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Watches
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=diamond&subtype=brooch"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Brooches
-                          </Link>
-                        </li>
-                        <li className="ml-4">
-                          <Link
-                            to="/Catalogue?type=diamond&subtype=ankelt"
-                            onClick={() => {
-                              setIsOpen(false);
-                              setCurrentMenu("");
-                              setActiveSubMenu("");
-                            }}
-                            className="text-xl flex items-center"
-                          >
-                            Anklets
-                          </Link>
-                        </li>
-                      </ul>
-                    )}
-                  </li>
-                </ul>
+                    <h3 className="text-xl">SHOP</h3>
+                  </div>
+                )}
+
+                {/* Main Menu - Hide if a Submenu is Active */}
+                {!activeSubMenu && (
+                  <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
+                    <li>
+                      <button
+                        onClick={() => handleSubMenuClick("kundan")}
+                        className="text-xl flex items-center justify-between w-full"
+                      >
+                        <span>KUNDAN</span>
+                        <FiChevronRight />
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          handleSubMenuClick("silver");
+                          setActiveSubMenu("silver");
+                        }}
+                        className={`text-xl flex items-center justify-between w-full ${
+                          activeSubMenu === "silver"
+                            ? "text-gray-400"
+                            : "text-black"
+                        }`}
+                      >
+                        <span>SILVER</span>
+                        <FiChevronRight />
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          handleSubMenuClick("diamond");
+                          setActiveSubMenu("diamond");
+                        }}
+                        className={`text-xl flex items-center justify-between w-full ${
+                          activeSubMenu === "diamond"
+                            ? "text-gray-400"
+                            : "text-black"
+                        }`}
+                      >
+                        <span>DIAMOND</span>
+                        <FiChevronRight />
+                      </button>
+                    </li>
+                  </ul>
+                )}
+
+                {/* KUNDAN Submenu */}
+                {activeSubMenu === "kundan" && (
+                  <div>
+                    <div className="flex justify-between items-center p-5">
+                      <button
+                        onClick={() => setActiveSubMenu("")}
+                        className="text-lg"
+                      >
+                        <IoChevronBackOutline />
+                      </button>
+                      <h3 className="text-xl">KUNDAN</h3>
+                    </div>
+
+                    <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
+                      <li>
+                        <Link
+                          to="/Catalogue?type=kundan&subtype=necklace"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Necklace
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=kundan&subtype=bracelet"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Bracelet
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=kundan&subtype=Earrings"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Earrings
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=kundan&subtype=ring"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Ring
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=kundan&subtype=mangtikka"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Mang Tika
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=kundan&subtype=nosepin"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Nose Pin
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=kundan&subtype=nath"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Nath
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=kundan&subtype=armlets"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Armlets
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+
+                {/* SILVER Submenu */}
+                {activeSubMenu === "silver" && (
+                  <div>
+                    <div className="flex justify-between items-center p-5">
+                      <button
+                        onClick={() => setActiveSubMenu("")}
+                        className="text-lg"
+                      >
+                        <IoChevronBackOutline />
+                      </button>
+                      <h3 className="text-xl">SILVER</h3>
+                    </div>
+                    <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
+                      <li>
+                        <Link
+                          to="/Catalogue?type=silver&subtype=ring"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Ring
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=silver&subtype=earring"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Earring
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=silver&subtype=necklace"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Necklace
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=silver&subtype=bracelet"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Bracelet
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=silver&subtype=anklet"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Anklets
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=silver&subtype=brooch"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Brooches
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+
+                {/* DIAMOND Submenu */}
+                {activeSubMenu === "diamond" && (
+                  <div>
+                    <div className="flex justify-between items-center p-5">
+                      <button
+                        onClick={() => setActiveSubMenu("")}
+                        className="text-lg"
+                      >
+                        <IoChevronBackOutline />
+                      </button>
+                      <h3 className="text-xl">DIAMOND</h3>
+                    </div>
+                    <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
+                      <li>
+                        <Link
+                          to="/Catalogue?type=diamond&subtype=ring"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Ring
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=diamond&subtype=necklace"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Necklace
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=diamond&subtype=earring"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Earrings
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=diamond&subtype=bracelet"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Bracelets
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=diamond&subtype=watch"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Watches
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=diamond&subtype=brooch"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Brooches
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/Catalogue?type=diamond&subtype=anklet"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setCurrentMenu("");
+                            setActiveSubMenu("");
+                          }}
+                          className="text-xl flex items-center"
+                        >
+                          Anklets
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
             )}
 
@@ -924,7 +970,7 @@ const Navbar = () => {
                 <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
                   <li>
                     <Link
-                      to="/indianBride" // Update the path as needed
+                      to="/indianBride"
                       onClick={() => {
                         setIsOpen(false);
                         setCurrentMenu("");
@@ -938,7 +984,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link
-                      to="/everyday" // Update the path as needed
+                      to="/everyday"
                       onClick={() => {
                         setIsOpen(false);
                         setCurrentMenu("");
