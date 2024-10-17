@@ -30,32 +30,6 @@ code {
   backdrop-filter: blur(10px);
 }
 
-/* index.css */
-.transition-all {
-  transition: all 0.3s ease-in-out;
-}
-
-.h-0 {
-  height: 0;
-}
-
-.h-auto {
-  height: auto;
-}
-
-.opacity-0 {
-  opacity: 0;
-}
-
-.opacity-100 {
-  opacity: 1;
-}
-
-.overflow-hidden {
-  overflow: hidden;
-}
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

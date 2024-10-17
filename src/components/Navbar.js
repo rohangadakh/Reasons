@@ -560,86 +560,68 @@ const Navbar = () => {
                 </li>
               </ul>
             )}
+            
             {/* Shop Submenu Items */}
-            {currentMenu === "shop" && (
-              <div
-                className={`transition-all duration-300 ease-in-out ${
-                  activeSubMenu
-                    ? "h-auto opacity-100"
-                    : "h-0 opacity-0 overflow-hidden"
-                }`}>
-                {/* Back Button and SHOP Header */}
-                {!activeSubMenu && ( // Only show the header when no submenu is active
-                  <div className="flex justify-between items-center p-5">
-                    <button
-                      onClick={() => setCurrentMenu("")}
-                      className="text-lg"
-                    >
-                      <IoChevronBackOutline />
-                    </button>
-                    <h3 className="text-xl">SHOP</h3>
-                  </div>
-                )}
+      
+{currentMenu === "shop" && (
+  <div>
+    {/* Show the "SHOP" Header and Main Menu only if no Submenu is Active */}
+    {!activeSubMenu && (
+      <>
+        {/* Back Button and SHOP Header */}
+        <div className="flex justify-between items-center p-5">
+          <button onClick={() => setCurrentMenu("")} className="text-lg">
+            <IoChevronBackOutline />
+          </button>
+          <h3 className="text-xl">SHOP</h3>
+        </div>
 
-                {/* Main Menu - Hide if a Submenu is Active */}
-                {!activeSubMenu && (
-                  <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
-                    <li>
-                      <button
-                        onClick={() => handleSubMenuClick("kundan")}
-                        className="text-xl flex items-center justify-between w-full"
-                      >
-                        <span>KUNDAN</span>
-                        <FiChevronRight />
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => {
-                          handleSubMenuClick("silver");
-                          setActiveSubMenu("silver");
-                        }}
-                        className={`text-xl flex items-center justify-between w-full ${
-                          activeSubMenu === "silver"
-                            ? "text-gray-400"
-                            : "text-black"
-                        }`}
-                      >
-                        <span>SILVER</span>
-                        <FiChevronRight />
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => {
-                          handleSubMenuClick("diamond");
-                          setActiveSubMenu("diamond");
-                        }}
-                        className={`text-xl flex items-center justify-between w-full ${
-                          activeSubMenu === "diamond"
-                            ? "text-gray-400"
-                            : "text-black"
-                        }`}
-                      >
-                        <span>DIAMOND</span>
-                        <FiChevronRight />
-                      </button>
-                    </li>
-                  </ul>
-                )}
+        {/* Main Menu */}
+        <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
+          <li>
+            <button
+              onClick={() => handleSubMenuClick("kundan")}
+              className="text-xl flex items-center justify-between w-full"
+            >
+              <span>KUNDAN</span>
+              <FiChevronRight />
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => handleSubMenuClick("silver")}
+              className={`text-xl flex items-center justify-between w-full ${
+                activeSubMenu === "silver" ? "text-gray-400" : "text-black"
+              }`}
+            >
+              <span>SILVER</span>
+              <FiChevronRight />
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => handleSubMenuClick("diamond")}
+              className={`text-xl flex items-center justify-between w-full ${
+                activeSubMenu === "diamond" ? "text-gray-400" : "text-black"
+              }`}
+            >
+              <span>DIAMOND</span>
+              <FiChevronRight />
+            </button>
+          </li>
+        </ul>
+      </>
+    )}
 
-                {/* KUNDAN Submenu */}
-                {activeSubMenu === "kundan" && (
-                  <div>
-                    <div className="flex justify-between items-center p-5">
-                      <button
-                        onClick={() => setActiveSubMenu("")}
-                        className="text-lg"
-                      >
-                        <IoChevronBackOutline />
-                      </button>
-                      <h3 className="text-xl">KUNDAN</h3>
-                    </div>
+    {/* KUNDAN Submenu */}
+    {activeSubMenu === "kundan" && (
+      <div>
+        <div className="flex justify-between items-center p-5">
+          <button onClick={() => setActiveSubMenu("")} className="text-lg">
+            <IoChevronBackOutline />
+          </button>
+          <h3 className="text-xl">KUNDAN</h3>
+        </div>
 
                     <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
                       <li>
