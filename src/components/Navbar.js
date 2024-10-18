@@ -506,7 +506,6 @@ const Navbar = () => {
                 <FiX />
               </motion.button>
             </div>
-
             {/* Main Menu Items */}
             {currentMenu === "" && (
               <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
@@ -520,6 +519,7 @@ const Navbar = () => {
                     <FiChevronRight />
                   </Link>
                 </li>
+                <hr className="border-gray-600" />
                 <li>
                   <Link
                     to="/whatsnew"
@@ -530,6 +530,7 @@ const Navbar = () => {
                     <FiChevronRight />
                   </Link>
                 </li>
+                <hr className="border-gray-600" />
                 <li>
                   <button
                     onClick={() => handleMenuClick("shop")}
@@ -539,6 +540,7 @@ const Navbar = () => {
                     <FiChevronRight />
                   </button>
                 </li>
+                <hr className="border-gray-600" />
                 <li>
                   <button
                     onClick={() => handleMenuClick("occasions")}
@@ -548,6 +550,7 @@ const Navbar = () => {
                     <FiChevronRight />
                   </button>
                 </li>
+                <hr className="border-gray-600" />
                 <li>
                   <Link
                     to="/login"
@@ -560,68 +563,89 @@ const Navbar = () => {
                 </li>
               </ul>
             )}
-            
             {/* Shop Submenu Items */}
-      
-{currentMenu === "shop" && (
-  <div>
-    {/* Show the "SHOP" Header and Main Menu only if no Submenu is Active */}
-    {!activeSubMenu && (
-      <>
-        {/* Back Button and SHOP Header */}
-        <div className="flex justify-between items-center p-5">
-          <button onClick={() => setCurrentMenu("")} className="text-lg">
-            <IoChevronBackOutline />
-          </button>
-          <h3 className="text-xl">SHOP</h3>
-        </div>
 
-        {/* Main Menu */}
-        <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
-          <li>
-            <button
-              onClick={() => handleSubMenuClick("kundan")}
-              className="text-xl flex items-center justify-between w-full"
-            >
-              <span>KUNDAN</span>
-              <FiChevronRight />
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => handleSubMenuClick("silver")}
-              className={`text-xl flex items-center justify-between w-full ${
-                activeSubMenu === "silver" ? "text-gray-400" : "text-black"
-              }`}
-            >
-              <span>SILVER</span>
-              <FiChevronRight />
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => handleSubMenuClick("diamond")}
-              className={`text-xl flex items-center justify-between w-full ${
-                activeSubMenu === "diamond" ? "text-gray-400" : "text-black"
-              }`}
-            >
-              <span>DIAMOND</span>
-              <FiChevronRight />
-            </button>
-          </li>
-        </ul>
-      </>
-    )}
+            {currentMenu === "shop" && (
+              <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* Show the "SHOP" Header and Main Menu only if no Submenu is Active */}
+                {!activeSubMenu && (
+                  <>
+                    {/* Back Button and SHOP Header */}
+                    <div className="flex justify-between items-center p-5">
+                      <button
+                        onClick={() => setCurrentMenu("")}
+                        className="text-lg"
+                      >
+                        <IoChevronBackOutline />
+                      </button>
+                      <h3 className="text-xl">SHOP</h3>
+                    </div>
 
-    {/* KUNDAN Submenu */}
-    {activeSubMenu === "kundan" && (
-      <div>
-        <div className="flex justify-between items-center p-5">
-          <button onClick={() => setActiveSubMenu("")} className="text-lg">
-            <IoChevronBackOutline />
-          </button>
-          <h3 className="text-xl">KUNDAN</h3>
-        </div>
+                    {/* Main Menu */}
+                    <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
+                      <li>
+                        <button
+                          onClick={() => handleSubMenuClick("kundan")}
+                          className="text-xl flex items-center justify-between w-full"
+                        >
+                          <span>KUNDAN</span>
+                          <FiChevronRight />
+                        </button>
+                      </li>
+                      <hr className="border-gray-600" />
+                      <li>
+                        <button
+                          onClick={() => handleSubMenuClick("silver")}
+                          className={`text-xl flex items-center justify-between w-full ${
+                            activeSubMenu === "silver"
+                              ? "text-gray-400"
+                              : "text-black"
+                          }`}
+                        >
+                          <span>SILVER</span>
+                          <FiChevronRight />
+                        </button>
+                      </li>
+                      <hr className="border-gray-600" />
+                      <li>
+                        <button
+                          onClick={() => handleSubMenuClick("diamond")}
+                          className={`text-xl flex items-center justify-between w-full ${
+                            activeSubMenu === "diamond"
+                              ? "text-gray-400"
+                              : "text-black"
+                          }`}
+                        >
+                          <span>DIAMOND</span>
+                          <FiChevronRight />
+                        </button>
+                      </li>
+                    </ul>
+                  </>
+                )}
+
+                {/* KUNDAN Submenu */}
+                {activeSubMenu === "kundan" && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <div className="flex justify-between items-center p-5">
+                      <button
+                        onClick={() => setActiveSubMenu("")}
+                        className="text-lg"
+                      >
+                        <IoChevronBackOutline />
+                      </button>
+                      <h3 className="text-xl">KUNDAN</h3>
+                    </div>
 
                     <ul className="flex flex-col space-y-4 p-5 mt-10 text-left">
                       <li>
@@ -637,6 +661,8 @@ const Navbar = () => {
                           Necklace
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=kundan&subtype=bracelet"
@@ -650,6 +676,8 @@ const Navbar = () => {
                           Bracelet
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=kundan&subtype=Earrings"
@@ -663,6 +691,8 @@ const Navbar = () => {
                           Earrings
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=kundan&subtype=ring"
@@ -676,6 +706,8 @@ const Navbar = () => {
                           Ring
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=kundan&subtype=mangtikka"
@@ -689,6 +721,8 @@ const Navbar = () => {
                           Mang Tika
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=kundan&subtype=nosepin"
@@ -702,6 +736,8 @@ const Navbar = () => {
                           Nose Pin
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=kundan&subtype=nath"
@@ -715,6 +751,8 @@ const Navbar = () => {
                           Nath
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=kundan&subtype=armlets"
@@ -729,12 +767,17 @@ const Navbar = () => {
                         </Link>
                       </li>
                     </ul>
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* SILVER Submenu */}
                 {activeSubMenu === "silver" && (
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <div className="flex justify-between items-center p-5">
                       <button
                         onClick={() => setActiveSubMenu("")}
@@ -758,6 +801,8 @@ const Navbar = () => {
                           Ring
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=silver&subtype=earring"
@@ -771,6 +816,8 @@ const Navbar = () => {
                           Earring
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=silver&subtype=necklace"
@@ -784,6 +831,8 @@ const Navbar = () => {
                           Necklace
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=silver&subtype=bracelet"
@@ -797,6 +846,8 @@ const Navbar = () => {
                           Bracelet
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
+
                       <li>
                         <Link
                           to="/Catalogue?type=silver&subtype=anklet"
@@ -810,6 +861,7 @@ const Navbar = () => {
                           Anklets
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
                       <li>
                         <Link
                           to="/Catalogue?type=silver&subtype=brooch"
@@ -824,12 +876,17 @@ const Navbar = () => {
                         </Link>
                       </li>
                     </ul>
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* DIAMOND Submenu */}
                 {activeSubMenu === "diamond" && (
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <div className="flex justify-between items-center p-5">
                       <button
                         onClick={() => setActiveSubMenu("")}
@@ -853,6 +910,7 @@ const Navbar = () => {
                           Ring
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
                       <li>
                         <Link
                           to="/Catalogue?type=diamond&subtype=necklace"
@@ -866,6 +924,7 @@ const Navbar = () => {
                           Necklace
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
                       <li>
                         <Link
                           to="/Catalogue?type=diamond&subtype=earring"
@@ -879,6 +938,7 @@ const Navbar = () => {
                           Earrings
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
                       <li>
                         <Link
                           to="/Catalogue?type=diamond&subtype=bracelet"
@@ -892,6 +952,7 @@ const Navbar = () => {
                           Bracelets
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
                       <li>
                         <Link
                           to="/Catalogue?type=diamond&subtype=watch"
@@ -905,6 +966,7 @@ const Navbar = () => {
                           Watches
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
                       <li>
                         <Link
                           to="/Catalogue?type=diamond&subtype=brooch"
@@ -918,6 +980,7 @@ const Navbar = () => {
                           Brooches
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
                       <li>
                         <Link
                           to="/Catalogue?type=diamond&subtype=anklet"
@@ -931,15 +994,21 @@ const Navbar = () => {
                           Anklets
                         </Link>
                       </li>
+                      <hr className="border-gray-600" />
                     </ul>
-                  </div>
+                  </motion.div>
                 )}
-              </div>
+              </motion.div>
             )}
 
             {/* Occasions Submenu Items */}
             {currentMenu === "occasions" && (
-              <div>
+              <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5 }}
+              >
                 <div className="flex justify-between items-center p-5">
                   <button
                     onClick={() => setCurrentMenu("")}
@@ -964,6 +1033,9 @@ const Navbar = () => {
                       <FiChevronRight />
                     </Link>
                   </li>
+
+                  <hr className="border-gray-600" />
+
                   <li>
                     <Link
                       to="/everyday"
@@ -978,8 +1050,10 @@ const Navbar = () => {
                       <FiChevronRight />
                     </Link>
                   </li>
+
+                  <hr className="border-gray-600" />
                 </ul>
-              </div>
+              </motion.div>
             )}
           </motion.div>
         </div>

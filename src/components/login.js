@@ -42,10 +42,7 @@ const LoginPage = () => {
         <h2 className="text-3xl hero-title font-bold text-center text-gray-900 mb-5">
           REASONS
         </h2>
-        <h2 className="text-2xl font-bold text-center text-gray-900">
-          Welcome Back !
-        </h2>
-        <p className="text-gray-600 font-rubik text-center mb-6">
+      <p className="text-gray-600 font-rubik text-center mb-6">
           Please enter your details to login.
         </p>
 

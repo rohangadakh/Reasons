@@ -32,26 +32,23 @@ function App() {
   const [selectedMetals, setSelectedMetals] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
-  const [price, setPrice] = useState(1000); // Example for price filter
+  const [price, setPrice] = useState(1000); // Price state
   const [showFilter, setShowFilter] = useState(false);
-  const [activeFilter, setActiveFilter] = useState(null);
   const [expandedSections, setExpandedSections] = useState({
     metals: false,
     categories: false,
     subcategories: false,
+    price: false, // Added price section state
   });
 
   const location = useLocation(); // Access URL and query parameters
-  // New state for hover effects
   const [hoveredProductId, setHoveredProductId] = useState(null);
 
   useEffect(() => {
-    // Extract query parameters from the URL
     const params = new URLSearchParams(location.search);
     const type = params.get("type");
     const subtype = params.get("subtype");
 
-    // Apply filter based on URL params
     if (type) {
       setSelectedMetals([type.charAt(0).toUpperCase() + type.slice(1)]);
     }
@@ -78,7 +75,7 @@ function App() {
       selectedCategories.includes(product.category);
 
     const matchesSubCategory =
-      subCategories.length === 0 || subCategories.includes(product.subcategory); // Update subcategory filter
+      subCategories.length === 0 || subCategories.includes(product.subcategory);
 
     return (
       matchesSearch && matchesMetal && matchesCategory && matchesSubCategory
@@ -98,13 +95,10 @@ function App() {
 
   const handleMetalChange = (metal) => {
     if (selectedMetals.includes(metal)) {
-      // If the metal is already selected, deselect it
       setSelectedMetals(selectedMetals.filter((m) => m !== metal));
     } else {
-      // Otherwise, select the metal
       setSelectedMetals([...selectedMetals, metal]);
     }
-    // Clear the categories and subcategories when a metal is selected
     setSelectedCategories([]);
     setSubCategories([]);
   };
@@ -160,11 +154,15 @@ function App() {
     return [...allSubCategories];
   };
 
+  const handlePriceChange = (e) => {
+    setPrice(e.target.value); // Update price state when slider is moved
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 font-Rubik">
       {/* Top Image */}
       <img
-        src="https://i.pinimg.com/736x/da/e0/af/dae0afe558fc29c1759dfecae1cef049.jpg" // Replace with your image path
+        src="https://i.pinimg.com/736x/da/e0/af/dae0afe558fc29c1759dfecae1cef049.jpg"
         alt="Banner"
         className="w-full h-60 object-cover brightness-50"
       />
@@ -176,10 +174,10 @@ function App() {
           placeholder="Search..."
           value={searchTerm}
           onChange={handleSearch}
-          className="flex-1 p-3 pl-6 rounded-full border font-rubik border-gray-300 mr-2 focus:border-black focus:outline-none" // Add focus styles
+          className="flex-1 p-3 pl-6 rounded-full border font-rubik border-gray-300 mr-2 focus:border-black focus:outline-none"
         />
         <button
-          className="bg-white border border-gray-300 text-black p-3 rounded-full flex-shrink-0" // Keep the button size consistent
+          className="bg-white border border-gray-300 text-black p-3 rounded-full flex-shrink-0"
           onClick={() => setShowFilter((prev) => !prev)}
         >
           <FaFilter />
@@ -222,14 +220,14 @@ function App() {
                       type="checkbox"
                       checked={selectedMetals.includes(metal)}
                       onChange={() => handleMetalChange(metal)}
-                      className="mr-2 w-6 h-6 text-pink-600 border-gray-300 rounded focus:ring-pink-500"
+                      className="mr-2 w-4 h-4 text-pink-600 border-gray-300 rounded focus:ring-pink-500"
                     />
                     <Link
                       to="/Catalogue"
                       className="font-rubik text-lg"
                       onClick={() => {
-                        setSelectedMetals([metal]); // Optional: If you want to keep the original behavior
-                        setSelectedCategories([]); // Clear selected categories
+                        setSelectedMetals([metal]);
+                        setSelectedCategories([]);
                       }}
                     >
                       {metal}
@@ -267,7 +265,7 @@ function App() {
                       type="checkbox"
                       checked={selectedCategories.includes(category)}
                       onChange={() => handleCategoryChange(category)}
-                      className="mr-2 w-6 h-6 text-pink-600 border-gray-300 rounded focus:ring-pink-500"
+                      className="mr-2 w-4 h-6 text-pink-600 border-gray-300 rounded focus:ring-pink-500"
                     />
                     <label className="font-rubik text-lg">{category}</label>
                   </div>
@@ -295,84 +293,93 @@ function App() {
                 )}
               </span>
             </h4>
-            {expandedSections.subcategories && (
-              <>
-                {/* Display relevant subcategories based on selected categories */}
-                {getAvailableSubCategories(selectedCategories).map(
-                  (subcategory) => (
-                    <div key={subcategory} className="flex items-center mb-2">
+            {expandedSections.subcategories &&
+              selectedMetals.length > 0 &&
+              selectedCategories.length > 0 && (
+                <>
+                  {getAvailableSubCategories(selectedCategories).map((sub) => (
+                    <div key={sub} className="flex items-center mb-2">
                       <input
                         type="checkbox"
-                        checked={subCategories.includes(subcategory)}
-                        onChange={() => handleSubCategoryChange(subcategory)}
-                        className="mr-2 w-6 h-6 text-pink-600 border-gray-300 rounded focus:ring-pink-500"
+                        checked={subCategories.includes(sub)}
+                        onChange={() => handleSubCategoryChange(sub)}
+                        className="mr-2 w-4 h-6 text-pink-600 border-gray-300 rounded focus:ring-pink-500"
                       />
-                      <label className="font-rubik text-lg">
-                        {subcategory}
-                      </label>
+                      <label className="font-rubik text-lg">{sub}</label>
                     </div>
-                  )
-                )}
-              </>
-            )}
+                  ))}
+                </>
+              )}
           </div>
 
-          {/* Apply and Reset Buttons */}
-          <div className="mt-4 flex justify-between">
-            <button
-              className="px-6 py-2 bg-pink-600 text-white rounded-full"
-              onClick={() => {
-                setShowFilter(false); // Hide filter panel
-              }}
+          {/* Price Filter */}
+          <div className="mt-4">
+            <h4
+              className="text-lg font-rubik cursor-pointer flex justify-between items-center"
+              onClick={() => toggleSection("price")}
             >
-              Apply
-            </button>
-            <button
-              className="px-6 py-2 bg-gray-300 text-black rounded-full"
-              onClick={() => {
-                setSelectedMetals([]);
-                setSelectedCategories([]);
-                setSubCategories([]);
-              }}
-            >
-              Reset
-            </button>
+              Price
+              <span
+                className={`ml-2 transition-transform ${
+                  expandedSections.price ? "rotate-180" : ""
+                }`}
+              >
+                {expandedSections.price ? <FaChevronUp /> : <FaChevronDown />}
+              </span>
+            </h4>
+            {expandedSections.price && (
+              <div className="mt-2">
+                <input
+                  type="range"
+                  min="100"
+                  max="10000"
+                  value={price}
+                  onChange={handlePriceChange}
+                  className="w-full"
+                />
+                <p className="mt-2 font-rubik">Max Price: ${price}</p>
+              </div>
+            )}
           </div>
         </div>
       )}
 
-      {/* Product Listing */}
-      <div className="container mx-auto px-6 py-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filteredProducts.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white border rounded-3xl border-gray-200 p-4 relative"
-            onMouseEnter={() => setHoveredProductId(product.id)}
-            onMouseLeave={() => setHoveredProductId(null)}
-          >
-            <img
-              src={
-                hoveredProductId === product.id
-                  ? product.hoverImg
-                  : product.images[0]
-              }
-              alt={product.name}
-              className="w-full h-48 rounded-3xl object-cover"
-            />
-            {/* Display product details on hover in desktop mode */}
-            {hoveredProductId === product.id && (
-              <div className="absolute inset-0 bg-black rounded-3xl bg-opacity-50 flex flex-col items-center justify-center text-white p-4">
-                <h2 className="text-xl font-rubik  mb-2">{product.name}</h2>
-                <p className="text-lg font-rubik ">{product.price}</p>
-              </div>
-            )}
-            {/* Always show details in mobile mode */}
-            <div className="md:hidden block">
-              <h2 className="text-xl font-rubik mt-4">{product.name}</h2>
-              <p className="text-lg font-rubik ">{product.price}</p>
+      {/* Products Section */}
+      <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+        {filteredProducts.length === 0 ? (
+          <p className="font-rubik text-gray-500">No products found</p>
+        ) : (
+          filteredProducts.map((product) => (
+            <div
+              key={product.id}
+              className="relative bg-white shadow-md rounded-3xl p-3 text-center"
+              onMouseEnter={() => setHoveredProductId(product.id)}
+              onMouseLeave={() => setHoveredProductId(null)}
+            >
+              <img
+                src={
+                  hoveredProductId === product.id
+                    ? product.hoverImg
+                    : product.images[0]
+                }
+                alt={product.name}
+                className="w-full h-48 rounded-3xl object-cover"
+              />
+
+              <h4 className="font-rubik mt-2 text-gray-500 text-s">{product.name}</h4>
+              <p className="font-rubik text-s">{product.price}</p>
+
+              {hoveredProductId === product.id && (
+                <Link
+                  to={`/Product/${product.id}`}
+                  className="absolute inset-0 flex items-center justify-center rounded-3xl bg-black bg-opacity-15 text-white font-rubik"
+                >
+                  {product.name}
+                </Link>
+              )}
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
