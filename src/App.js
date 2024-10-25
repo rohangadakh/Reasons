@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import HeroVideo from './components/HeroVideo';
-import IndianBrideJewelryCollection from './components/bridejewellery'
+import BrideGallery from './components/IndianBride'
 import './App.css'; // Tailwind configuration should be here
 import TextComponent from './components/Text-1';
 import ImageComponent from './components/ImageComponent';
@@ -66,6 +66,13 @@ function App() {
                         <>
                             <Navbar />
                             <EveryDay />
+                            <Footer />
+                        </>
+                    } />
+                      <Route path="/IndianBride" element={
+                        <>
+                            <Navbar />
+                            <BrideGallery />
                             <Footer />
                         </>
                     } />
