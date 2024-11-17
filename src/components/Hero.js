@@ -13,7 +13,7 @@ const Hero = () => {
         delay: 0.2,
       } 
     },
-  };
+  }; 
 
   const staggerChildren = {
     visible: {
@@ -80,8 +80,7 @@ const Hero = () => {
           className="px-8 py-3 border border-white text-white font-semibold text-lg shadow-lg hover:bg-white hover:text-white hover:bg-opacity-20 transition duration-300 transform hover:scale-110 hover:rotate-2 hover:-translate-y-2 focus:outline-none"
           whileHover={{ 
             y: -10, 
-            boxShadow: "0px 15px 40px rgba(255, 255, 255, 0.5)",
-            transition: { duration: 0.3 }, // Faster hover transition
+            transition: { duration: 0.3 }, 
           }}
           whileTap={{ scale: 0.9 }}
         >

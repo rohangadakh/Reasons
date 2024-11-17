@@ -8,9 +8,9 @@ const TextComponentThree = () => {
       </p>
       <div className="flex justify-center mt-20">
         <img
-          width="28"
-          height="28"
-          src="https://img.icons8.com/color/48/fenix.png"
+          width="58"
+          height="58"
+          src="./thelogo.png"
           alt="lion-head"
         />
       </div>

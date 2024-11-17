@@ -159,8 +159,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-Rubik">
-      {/* Top Image */}
+    <div className="min-h-screen bg-gray-50 hero-text">
       <img
         src="https://i.pinimg.com/736x/da/e0/af/dae0afe558fc29c1759dfecae1cef049.jpg"
         alt="Banner"
@@ -174,7 +173,7 @@ function App() {
           placeholder="Search..."
           value={searchTerm}
           onChange={handleSearch}
-          className="flex-1 p-3 pl-6 rounded-full border font-rubik border-gray-300 mr-2 focus:border-black focus:outline-none"
+          className="flex-1 p-3 pl-6 rounded-full border hero-text border-gray-300 mr-2 focus:border-black focus:outline-none"
         />
         <button
           className="bg-white border border-gray-300 text-black p-3 rounded-full flex-shrink-0"
@@ -188,7 +187,7 @@ function App() {
       {showFilter && (
         <div className="fixed inset-0 bg-white z-50 p-6 max-w-[500px] overflow-auto">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-rubik font-medium">Filters</h3>
+            <h3 className="text-lg hero-text font-medium">Filters</h3>
             <button
               className="text-gray-500 text-2xl"
               onClick={() => setShowFilter(false)}
@@ -200,7 +199,7 @@ function App() {
           {/* Metal Filter */}
           <div className="mt-4">
             <h4
-              className="text-lg font-rubik cursor-pointer flex justify-between items-center"
+              className="text-lg hero-text cursor-pointer flex justify-between items-center"
               onClick={() => toggleSection("metals")}
             >
               Metals
@@ -224,7 +223,7 @@ function App() {
                     />
                     <Link
                       to="/Catalogue"
-                      className="font-rubik text-lg"
+                      className="hero-text text-lg"
                       onClick={() => {
                         setSelectedMetals([metal]);
                         setSelectedCategories([]);
@@ -241,7 +240,7 @@ function App() {
           {/* Category Filter */}
           <div className="mt-4">
             <h4
-              className="text-lg font-rubik cursor-pointer flex justify-between items-center"
+              className="text-lg hero-text cursor-pointer flex justify-between items-center"
               onClick={() => toggleSection("categories")}
             >
               Categories
@@ -267,7 +266,7 @@ function App() {
                       onChange={() => handleCategoryChange(category)}
                       className="mr-2 w-4 h-6 text-pink-600 border-gray-300 rounded focus:ring-pink-500"
                     />
-                    <label className="font-rubik text-lg">{category}</label>
+                    <label className="hero-text text-lg">{category}</label>
                   </div>
                 ))}
               </>
@@ -277,7 +276,7 @@ function App() {
           {/* Subcategory Filter */}
           <div className="mt-4">
             <h4
-              className="text-lg font-rubik cursor-pointer flex justify-between items-center"
+              className="text-lg hero-text cursor-pointer flex justify-between items-center"
               onClick={() => toggleSection("subcategories")}
             >
               Subcategories
@@ -305,7 +304,7 @@ function App() {
                         onChange={() => handleSubCategoryChange(sub)}
                         className="mr-2 w-4 h-6 text-pink-600 border-gray-300 rounded focus:ring-pink-500"
                       />
-                      <label className="font-rubik text-lg">{sub}</label>
+                      <label className="hero-text text-lg">{sub}</label>
                     </div>
                   ))}
                 </>
@@ -315,7 +314,7 @@ function App() {
           {/* Price Filter */}
           <div className="mt-4">
             <h4
-              className="text-lg font-rubik cursor-pointer flex justify-between items-center"
+              className="text-lg hero-text cursor-pointer flex justify-between items-center"
               onClick={() => toggleSection("price")}
             >
               Price
@@ -337,7 +336,7 @@ function App() {
                   onChange={handlePriceChange}
                   className="w-full"
                 />
-                <p className="mt-2 font-rubik">Max Price: ${price}</p>
+                <p className="mt-2 hero-text">Max Price: ${price}</p>
               </div>
             )}
           </div>
@@ -347,7 +346,7 @@ function App() {
       {/* Products Section */}
       <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
         {filteredProducts.length === 0 ? (
-          <p className="font-rubik text-gray-500">No products found</p>
+          <p className="hero-text text-gray-500">No products found</p>
         ) : (
           filteredProducts.map((product) => (
             <div
@@ -366,13 +365,13 @@ function App() {
                 className="w-full h-48 rounded-3xl object-cover"
               />
 
-              <h4 className="font-rubik mt-2 text-gray-500 text-s">{product.name}</h4>
-              <p className="font-rubik text-s">{product.price}</p>
+              <h4 className="hero-text mt-2 text-gray-500 text-s">{product.name}</h4>
+              <p className="hero-text text-s">{product.price}</p>
 
               {hoveredProductId === product.id && (
                 <Link
                   to={`/Product/${product.id}`}
-                  className="absolute inset-0 flex items-center justify-center rounded-3xl bg-black bg-opacity-15 text-white font-rubik"
+                  className="absolute inset-0 flex items-center justify-center rounded-3xl bg-black bg-opacity-15 text-white hero-text"
                 >
                   {product.name}
                 </Link>

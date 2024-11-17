@@ -78,7 +78,7 @@ import React from 'react';
         }
 
         .description-text {
-          font-family: 'Rubik', sans-serif;
+          font-family: 'Raleway', sans-serif;
           font-size: 0.9rem;
           margin-bottom: 20px;
           max-width: 800px;

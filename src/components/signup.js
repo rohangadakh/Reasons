@@ -50,7 +50,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white p-4 font-Rubik">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white p-4 hero-text">
       <div className="bg-white rounded-3xl border border-gray-200 p-8 shadow-xl w-full max-w-sm">
         <div className="flex justify-center mb-6">
           <img
@@ -65,7 +65,7 @@ const SignupPage = () => {
             <h2 className="text-3xl font-bold hero-title text-center">
               REASONS
             </h2>
-            <p className="text-gray-500 text-center font-rubik mt-2">
+            <p className="text-gray-500 text-center hero-text mt-2">
               Enter the details to proceed
             </p>
 
@@ -76,7 +76,7 @@ const SignupPage = () => {
                   <input
                     type="text"
                     placeholder="Enter your name"
-                    className="border border-gray-300 p-4 font-rubik rounded-full w-full focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200 pl-10"
+                    className="border border-gray-300 p-4 hero-text rounded-full w-full focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200 pl-10"
                   />
                 </div>
               </div>
@@ -87,7 +87,7 @@ const SignupPage = () => {
                   <input
                     type="email"
                     placeholder="Enter your email"
-                    className="border border-gray-300 p-4 rounded-full font-rubik w-full focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200 pl-10"
+                    className="border border-gray-300 p-4 rounded-full hero-text w-full focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200 pl-10"
                   />
                 </div>
               </div>
@@ -104,20 +104,20 @@ const SignupPage = () => {
               </div>
 
               <button
-                className="relative w-full py-3 mt-6 bg-black font-rubik text-white rounded-full text-lg overflow-hidden focus:outline-none"
+                className="relative w-full py-3 mt-6 bg-black hero-text text-white rounded-full text-lg overflow-hidden focus:outline-none"
                 onClick={handleSignup}
                 onMouseDown={createRipple}
               >
                 <div className="ripple-container absolute inset-0 overflow-hidden rounded-full"></div>
-                <span className="relative z-10 font-rubik">Sign Up</span>
+                <span className="relative z-10 hero-text">Sign Up</span>
               </button>
 
               <hr className="my-6 border-gray-300" />
 
-              <p className="text-center font-rubik">
+              <p className="text-center hero-text">
                 Already have an account?{" "}
                 <span
-                  className="text-red-500 cursor-pointer font-rubik hover:underline"
+                  className="text-red-500 cursor-pointer hero-text hover:underline"
                   onClick={() => (window.location.href = "/login")}
                 >
                   Login
@@ -127,7 +127,7 @@ const SignupPage = () => {
           </>
         ) : (
           <div className="mt-6 text-center">
-            <p className="text-gray-500 font-rubik">
+            <p className="text-gray-500 hero-text">
               Enter the OTP sent to your email
             </p>
             <div className="flex justify-between mt-4">
@@ -136,14 +136,14 @@ const SignupPage = () => {
                   key={index}
                   type="text"
                   maxLength={1}
-                  className="border border-gray-300 p-4 font-rubik rounded-full w-14 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200 text-center"
+                  className="border border-gray-300 p-4 hero-text rounded-full w-14 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200 text-center"
                   value={otp[index]}
                   onChange={(e) => handleOtpChange(e, index)}
                   ref={(el) => (otpRefs.current[index] = el)}
                 />
               ))}
             </div>
-            <button className="relative w-full font-rubik py-3 mt-6 bg-black text-white rounded-full text-lg hover:bg-gray-600 transition duration-200">
+            <button className="relative w-full hero-text py-3 mt-6 bg-black text-white rounded-full text-lg hover:bg-gray-600 transition duration-200">
               Verify OTP
             </button>
           </div>

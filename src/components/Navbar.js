@@ -76,7 +76,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto p-5">
         {/* Desktop Navbar */}
-        <div className="hidden md:flex flex-col items-center font-rubik relative z-20">
+        <div className="hidden md:flex flex-col items-center hero-text relative z-20">
           <div className="text-3xl hero-title font-bold mb-4 text-center z-20">
             REASONS
           </div>

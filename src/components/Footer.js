@@ -162,13 +162,13 @@ const Footer = () => {
 
         <div className="flex items-center justify-center">
           <img
-            width="24"
-            height="24"
-            src="https://img.icons8.com/color/48/fenix.png"
+            width="30"
+            height="30"
+            src="./thelogo.png"
             alt="lion-head"
             className="mr-2"
           />
-          <h1 className="text-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <h1 className="text-lg" style={{ fontFamily: 'Raleway, sans-serif' }}>
             REASONS |  © {new Date().getFullYear()} All rights reserved.
           </h1>
         </div>

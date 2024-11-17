@@ -76,7 +76,7 @@ const WhatsNewPage = () => {
           What's New in Our Collection
         </motion.h1>
         <div className="absolute inset-x-0 bottom-0 h-20 bg-opacity-50 flex items-center justify-center z-20">
-          <p className="text-lg font-rubik text-white">
+          <p className="text-lg hero-text text-white">
             Explore the latest arrivals and exclusive designs.
           </p>
         </div>

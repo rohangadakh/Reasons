@@ -30,7 +30,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center mx-5 bg-white font-Rubik">
+    <div className="min-h-screen flex items-center justify-center mx-5 bg-white hero-text">
       <div className="bg-white border border-gray-300 rounded-3xl p-6 shadow-xl w-full max-w-md transform transition-all duration-500 hover:shadow-2xl">
         <div className="flex justify-center mb-6">
           <img
@@ -42,7 +42,7 @@ const LoginPage = () => {
         <h2 className="text-3xl hero-title font-bold text-center text-gray-900 mb-5">
           REASONS
         </h2>
-      <p className="text-gray-600 font-rubik text-center mb-6">
+      <p className="text-gray-600 hero-text text-center mb-6">
           Please enter your details to login.
         </p>
 
@@ -52,7 +52,7 @@ const LoginPage = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="border border-gray-300 p-4 rounded-full w-full font-rubik focus:outline-none focus:ring-2 focus:ring-gray-800 transition duration-200 pl-12 text-gray-700"
+              className="border border-gray-300 p-4 rounded-full w-full hero-text focus:outline-none focus:ring-2 focus:ring-gray-800 transition duration-200 pl-12 text-gray-700"
             />
           </div>
 
@@ -61,7 +61,7 @@ const LoginPage = () => {
             <input
               type="password"
               placeholder="Enter your password"
-              className="border border-gray-300 p-4 rounded-full font-rubik w-full focus:outline-none focus:ring-2 focus:ring-gray-800 transition duration-200 pl-12 text-gray-700"
+              className="border border-gray-300 p-4 rounded-full hero-text w-full focus:outline-none focus:ring-2 focus:ring-gray-800 transition duration-200 pl-12 text-gray-700"
             />
           </div>
         </div>
@@ -76,10 +76,10 @@ const LoginPage = () => {
 
         <hr className="my-6 border-gray-300" />
 
-        <p className="text-center font-rubik text-gray-700">
+        <p className="text-center hero-text text-gray-700">
           New here?{" "}
           <span
-            className="text-red-500 cursor-pointer font-rubik hover:underline"
+            className="text-red-500 cursor-pointer hero-text hover:underline"
             onClick={() => (window.location.href = "/signup")}
           >
             Create an account

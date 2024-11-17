@@ -80,7 +80,7 @@ export default function EqualSpaceMasonryLayout() {
         }
 
         .description-text {
-          font-family: 'Rubik', sans-serif;
+          font-family: 'Raleway', sans-serif;
           font-size: 0.9rem;
           margin-bottom: 20px;
           max-width: 800px;
@@ -94,7 +94,7 @@ export default function EqualSpaceMasonryLayout() {
           padding: 10px 20px;
           border-radius: 19px;
           color: white;
-          font-family: 'Rubik', sans-serif;
+          font-family: 'Raleway', sans-serif;
           cursor: pointer;
           transition: background-color 0.3s;
         }
