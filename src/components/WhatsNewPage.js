@@ -63,17 +63,17 @@ const WhatsNewPage = () => {
       {/* Hero Image Section */}
       <div className="relative w-full h-screen">
         <img
-          src="https://quadcubes.com/uplu/2023/01/aroosa-jewellery-photoshoot.jpg"
+          src="./assets/v2/WhatsNewbw.jpeg"
           alt="What's New"
           className="w-full h-full object-cover rounded-none brightness-50"
         />
-        <motion.h1 
+        <motion.h1
           className="absolute inset-0 flex items-center justify-center text-4xl hero-title md:text-5xl font-bold text-white z-10"
           initial={{ y: 50, opacity: 0 }} // Initial state
-          animate={{ y: 0, opacity: 1 }}   // Final state
+          animate={{ y: 0, opacity: 1 }} // Final state
           transition={{ duration: 1, ease: "easeOut" }} // Animation properties
         >
-          What's New in Our Collection
+          NEW ARRIVALS, TIMELESS BEAUTY
         </motion.h1>
         <div className="absolute inset-x-0 bottom-0 h-20 bg-opacity-50 flex items-center justify-center z-20">
           <p className="text-lg hero-text text-white">
@@ -95,14 +95,14 @@ const WhatsNewPage = () => {
             <div className="absolute inset-0 bg-black opacity-50 rounded-3xl"></div>
           </div>
           <h3 className="text-2xl font-semibold mt-2 mb-2 hero-title">
-            Latest Trends
+            Western-Inspired Creations
           </h3>
           <p
             className="text-gray-600 text-sm"
             style={{ fontFamily: "Rubik, sans-serif" }}
           >
-            Discover the newest trends in high jewelry and fashion, exclusively
-            available in our latest collection.
+            Bold and Beautiful, Our Western-Inspired
+            Jewellery Reimagines Tradition with a Modern Edge.
           </p>
         </div>
 
@@ -117,14 +117,15 @@ const WhatsNewPage = () => {
             <div className="absolute inset-0 bg-black opacity-50 rounded-3xl"></div>
           </div>
           <h3 className="text-2xl font-semibold mt-2 mb-2 hero-title">
-            New Arrivals
+            Bridal Elegance
           </h3>
           <p
             className="text-gray-600 text-sm"
             style={{ fontFamily: "Rubik, sans-serif" }}
           >
-            Browse our newest arrivals, featuring timeless designs and
-            innovative craftsmanship.
+            Crafting Timeless Pieces for Your Most
+ Cherished Moments – Exquisite Bridal
+ Jewellery for a Perfect Day..
           </p>
         </div>
 
@@ -139,14 +140,14 @@ const WhatsNewPage = () => {
             <div className="absolute inset-0 bg-black opacity-50 rounded-3xl"></div>
           </div>
           <h3 className="text-2xl font-semibold mt-2 mb-2 hero-title">
-            Exclusive Designs
+          Bespoke Jewellery Designs
           </h3>
           <p
             className="text-gray-600 text-sm"
             style={{ fontFamily: "Rubik, sans-serif" }}
           >
-            Experience the luxury of exclusivity with designs only available at
-            our boutique.
+          Unleash Your Creativity – Work with Our Experts to Create Custom
+          Jewellery that Tells Your Unique Story
           </p>
         </div>
       </div>
@@ -157,7 +158,9 @@ const WhatsNewPage = () => {
           className="text-lg text-justify text-gray-700 leading-6"
           style={{ fontFamily: "Rubik, sans-serif" }}
         >
-          Our collection brings together the finest materials and intricate craftsmanship to create pieces that transcend time and trends. Discover the latest arrivals and exclusive designs that embody the
+          Our collection brings together the finest materials and intricate
+          craftsmanship to create pieces that transcend time and trends.
+          Discover the latest arrivals and exclusive designs that embody the
           spirit of luxury, elegance, and sophistication.
         </p>
       </div>

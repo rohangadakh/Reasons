@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { FaPlay, FaPause, FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
+import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { FaPlay, FaPause, FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 
 const HeroVideo = () => {
   const videoRef = useRef(null);
@@ -35,7 +35,7 @@ const HeroVideo = () => {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     },
   };
@@ -46,11 +46,11 @@ const HeroVideo = () => {
       <video
         ref={videoRef}
         className="w-full h-full object-cover"
-        src="/assets/HeroVideo.mp4" 
+        src="/assets/v2/HeroHome.mp4"
         loop
         muted={isMuted}
       />
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0"></div>
 
       <motion.div
         className="absolute inset-0 flex flex-col items-center justify-center text-center"
@@ -60,18 +60,18 @@ const HeroVideo = () => {
       >
         <motion.h1
           variants={fadeInVariants}
-          className="text-4xl sm:text-5xl md:text-6xl hero-title font-bold text-white mb-8"
+          className="text-4xl mt-96 sm:text-5xl md:text-6xl hero-title font-bold text-white mb-8"
         >
-          Timeless Beauty
+          ELEGANCE REDEFINED
         </motion.h1>
-        <motion.button
+        {/* <motion.button
           variants={fadeInVariants}
           className="px-8 py-3 border border-white text-white font-semibold text-lg shadow-lg hover:bg-opacity-10 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
           whileHover={{ y: -5 }}
           whileTap={{ scale: 0.95 }}
         >
           Explore
-        </motion.button>
+        </motion.button> */}
       </motion.div>
 
       {/* Controls */}

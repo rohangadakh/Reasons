@@ -20,6 +20,7 @@ import SignupPage from './components/signup'; // Change to PascalCase
 import Catalogue from './components/Catalogue';
 import './index.css'; // Tailwind configuration should be here
 import EveryDay from './components/Everyday';
+import HeroVideoTwo from './components/HeroVideoTwo';
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                             <Hero />
                             <TextComponent />
                             <HeroVideo />
+                            <HeroVideoTwo/>
                             <ImageComponent />
                             <VideoComponent />
                             <TextComponentTwo />

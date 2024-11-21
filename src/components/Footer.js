@@ -64,7 +64,7 @@ const Footer = () => {
                 >
                   <ul className="text-s">
                     <li>Autumn / Winter 2024</li>
-                    <li>The Jewellery Edit</li>
+                    <li>The Western Era</li>
                     <li>Bridal Couture 2024</li>
                   </ul>
                 </motion.div>

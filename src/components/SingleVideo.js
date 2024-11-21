@@ -27,11 +27,6 @@ const VideoPlayer = () => {
 
   return (
     <div className="relative w-full h-auto overflow-hidden mt-0.5">
-      {/* Jewelry-related text */}
-      <div className="text-center mb-8 mt-8 text-l hero-text font-light text-gray-800">
-        Exquisite Jewelry Collection
-      </div>
-
       {/* Video Player */}
       <video
         ref={videoRef}

@@ -4,8 +4,6 @@ import { motion } from "framer-motion"; // For animation
 import {
   FiX,
   FiMenu,
-  FiShoppingCart,
-  FiLayers,
   FiChevronRight,
 } from "react-icons/fi";
 import { IoChevronBackOutline } from "react-icons/io5";
@@ -73,7 +71,7 @@ const Navbar = () => {
       className={`fixed w-full top-0 z-50 transition-all duration-800 ${
         scrolled ? "bg-white text-black" : "bg-transparent text-white"
       } md:hover:bg-white md:hover:text-black`}
-    >
+    > 
       <div className="container mx-auto p-5">
         {/* Desktop Navbar */}
         <div className="hidden md:flex flex-col items-center hero-text relative z-20">
@@ -180,10 +178,10 @@ const Navbar = () => {
                 >
                   <div className="flex flex-col w-1/3 text-black">
                     <Link to="/indianbride" className="py-2 hover:bg-gray-200">
-                      Indian Bride
+                      Bride
                     </Link>
                     <Link to="/everyday" className="py-2 hover:bg-gray-200">
-                      Everyday Jewellery
+                      Daily Luxe
                     </Link>
                   </div>
                   <div className="border-l border-gray-300 mx-4 h-auto"></div>
@@ -192,36 +190,22 @@ const Navbar = () => {
                   <div className="flex flex-row ml-10 space-x-4 w-full">
                     <div>
                       <img
-                        src="https://i.pinimg.com/564x/f5/e4/bd/f5e4bddf70b886fd33536bd9825c49f1.jpg" // Replace with your image URL
-                        alt="REASONS x Indian"
-                        className="h-60 w-auto rounded" // Adjust styles as needed
-                      />
-                    </div>
-                    <div>
-                      <img
-                        src="https://i.pinimg.com/736x/86/5f/3c/865f3c69d3c0b23233571697d6c9b208.jpg" // Replace with your image URL
+                        src="./assets/v2/IMG_9019.jpg" // Replace with your image URL
                         alt="REASONS Exclusive"
                         className="h-60 w-auto rounded" // Adjust styles as needed
                       />
                     </div>
                     <div>
                       <img
-                        src="https://i.pinimg.com/736x/51/01/be/5101be378904ecfbbc77dbbd9643ec85.jpg" // Replace with your image URL
+                        src="./assets/v2/IMG_9020.jpg" // Replace with your image URL
                         alt="South Indian"
                         className="h-60 w-auto rounded" // Adjust styles as needed
                       />
                     </div>
                     <div>
                       <img
-                        src="https://i.pinimg.com/564x/23/26/eb/2326eb5a984bb80ac7c9f2e89686d5d6.jpg" // Replace with your image URL
+                        src="./assets/v2/IMG_9021.jpg" // Replace with your image URL
                         alt="Everyday Everready"
-                        className="h-60 w-auto rounded" // Adjust styles as needed
-                      />
-                    </div>
-                    <div>
-                      <img
-                        src="https://i.pinimg.com/564x/32/b6/a0/32b6a0dc775284f19b7a0248ba56abff.jpg" // Replace with your image URL
-                        alt="Simple yet elegant"
                         className="h-60 w-auto rounded" // Adjust styles as needed
                       />
                     </div>
@@ -229,7 +213,6 @@ const Navbar = () => {
                 </div>
               )}
             </li>
-
             {/* Shop menu with submenu items */}
             <li
               className="group relative"
@@ -1029,7 +1012,7 @@ const Navbar = () => {
                       }}
                       className="text-xl flex items-center justify-between w-full"
                     >
-                      <span>INDIAN BRIDE</span>
+                      <span>Bride</span>
                       <FiChevronRight />
                     </Link>
                   </li>
@@ -1046,7 +1029,7 @@ const Navbar = () => {
                       }}
                       className="text-xl flex items-center justify-between w-full"
                     >
-                      <span>CASUALS</span>
+                      <span>Daily Luxe</span>
                       <FiChevronRight />
                     </Link>
                   </li>

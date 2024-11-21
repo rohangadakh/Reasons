@@ -24,7 +24,7 @@ const BrideGallery = () => {
       <div
         className="relative w-full h-screen bg-cover bg-center"
         style={{
-          backgroundImage: `url("https://i.pinimg.com/736x/da/e0/af/dae0afe558fc29c1759dfecae1cef049.jpg")`,
+          backgroundImage: `url("./assets/v2/IMG_9019.jpg")`,
         }}
       >
         <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
