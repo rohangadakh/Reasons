@@ -101,8 +101,8 @@ const WhatsNewPage = () => {
             className="text-gray-600 text-sm"
             style={{ fontFamily: "Rubik, sans-serif" }}
           >
-            Bold and Beautiful, Our Western-Inspired
-            Jewellery Reimagines Tradition with a Modern Edge.
+            Bold and Beautiful, Our Western-Inspired Jewellery Reimagines
+            Tradition with a Modern Edge.
           </p>
         </div>
 
@@ -123,9 +123,8 @@ const WhatsNewPage = () => {
             className="text-gray-600 text-sm"
             style={{ fontFamily: "Rubik, sans-serif" }}
           >
-            Crafting Timeless Pieces for Your Most
- Cherished Moments – Exquisite Bridal
- Jewellery for a Perfect Day..
+            Crafting Timeless Pieces for Your Most Cherished Moments – Exquisite
+            Bridal Jewellery for a Perfect Day..
           </p>
         </div>
 
@@ -140,14 +139,14 @@ const WhatsNewPage = () => {
             <div className="absolute inset-0 bg-black opacity-50 rounded-3xl"></div>
           </div>
           <h3 className="text-2xl font-semibold mt-2 mb-2 hero-title">
-          Bespoke Jewellery Designs
+            Bespoke Jewellery Designs
           </h3>
           <p
             className="text-gray-600 text-sm"
             style={{ fontFamily: "Rubik, sans-serif" }}
           >
-          Unleash Your Creativity – Work with Our Experts to Create Custom
-          Jewellery that Tells Your Unique Story
+            Unleash Your Creativity – Work with Our Experts to Create Custom
+            Jewellery that Tells Your Unique Story
           </p>
         </div>
       </div>
